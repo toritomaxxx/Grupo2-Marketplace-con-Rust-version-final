@@ -1,0 +1,13 @@
+[workspace]
+members = [
+    "marketplace_principal",
+    "reportes_view"
+]
+
+resolver = "2"
+
+[profile.release]
+panic = "abort"
+lto = true
+codegen-units = 1
+overflow-checks = false

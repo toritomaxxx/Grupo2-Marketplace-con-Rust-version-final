@@ -1,0 +1,27 @@
+[package]
+name = "reportes_view"
+version = "0.1.0"
+authors = ["Tu Nombre"]
+edition = "2021"
+
+[dependencies]
+ink = { version = "4.3.0", default-features = false }
+scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
+scale-info = { version = "2.6", default-features = false, features = ["derive"] }
+
+[dev-dependencies]
+ink_e2e = "4.3.0"
+marketplace_principal = { path = "../marketplace_principal", default-features = false, features = ["ink-as-dependency"] }
+
+[lib]
+path = "lib.rs"
+
+[features]
+default = ["std"]
+std = [
+    "ink/std",
+    "scale/std",
+    "scale-info/std"
+]
+ink-as-dependency = []
+e2e-tests = [] # <--- Asegúrate de que esta línea exista
