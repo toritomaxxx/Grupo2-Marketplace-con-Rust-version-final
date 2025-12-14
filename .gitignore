@@ -1,4 +1,7 @@
-/target
+/target/*
+!/target/ink
+/target/ink/**/release
+/target/ink/**/wasm32-unknown-unknown
 /.vscode
 /.idea
 .DS_Store

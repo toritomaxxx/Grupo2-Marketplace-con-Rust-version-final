@@ -1,0 +1,711 @@
+{
+  "source": {
+    "hash": "0x9c4c7cfceabdd0492fb7b5f11840e72e46949049419119e656aaef13fda75b71",
+    "language": "ink! 4.3.0",
+    "compiler": "rustc 1.91.1",
+    "build_info": {
+      "build_mode": "Release",
+      "cargo_contract_version": "3.2.0",
+      "rust_toolchain": "stable-x86_64-unknown-linux-gnu",
+      "wasm_opt_settings": {
+        "keep_debug_symbols": false,
+        "optimization_passes": "Z"
+      }
+    }
+  },
+  "contract": {
+    "name": "reportes_view",
+    "version": "0.1.0",
+    "authors": [
+      "Tu Nombre"
+    ]
+  },
+  "spec": {
+    "constructors": [
+      {
+        "args": [
+          {
+            "label": "direccion_marketplace",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          "Constructor principal del contrato de reportes.",
+          "",
+          "Inicializa el contrato almacenando la dirección del contrato principal",
+          "de Marketplace para poder realizar las consultas cross-contract.",
+          "",
+          "# Parámetros",
+          "* `direccion_marketplace` - AccountId del contrato `marketplace_principal` desplegado."
+        ],
+        "label": "nuevo",
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
+          "type": 3
+        },
+        "selector": "0x0fc23031"
+      }
+    ],
+    "docs": [],
+    "environment": {
+      "accountId": {
+        "displayName": [
+          "AccountId"
+        ],
+        "type": 0
+      },
+      "balance": {
+        "displayName": [
+          "Balance"
+        ],
+        "type": 17
+      },
+      "blockNumber": {
+        "displayName": [
+          "BlockNumber"
+        ],
+        "type": 10
+      },
+      "chainExtension": {
+        "displayName": [
+          "ChainExtension"
+        ],
+        "type": 20
+      },
+      "hash": {
+        "displayName": [
+          "Hash"
+        ],
+        "type": 18
+      },
+      "maxEventTopics": 4,
+      "timestamp": {
+        "displayName": [
+          "Timestamp"
+        ],
+        "type": 19
+      }
+    },
+    "events": [],
+    "lang_error": {
+      "displayName": [
+        "ink",
+        "LangError"
+      ],
+      "type": 5
+    },
+    "messages": [
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Retorna los 5 vendedores con mayor reputación.",
+          "",
+          " Filtra los usuarios que tienen rol `Vendedor` o `Ambos`, los ordena",
+          " por su `reputacion_como_vendedor` de mayor a menor y toma los primeros 5.",
+          "",
+          " # Retorno",
+          " * `Vec<Usuario>`: Lista de hasta 5 usuarios."
+        ],
+        "label": "top_5_vendedores",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 6
+        },
+        "selector": "0x2e84f17d"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Retorna los 5 compradores con mayor reputación.",
+          "",
+          " Filtra los usuarios que tienen rol `Comprador` o `Ambos`, los ordena",
+          " por su `reputacion_como_comprador` de mayor a menor y toma los primeros 5.",
+          "",
+          " # Retorno",
+          " * `Vec<Usuario>`: Lista de hasta 5 usuarios."
+        ],
+        "label": "top_5_compradores",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 6
+        },
+        "selector": "0x5e2db0f6"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Calcula los productos más vendidos (basado en órdenes recibidas).",
+          "",
+          " Itera sobre todas las órdenes con estado `Recibida`, suma las cantidades",
+          " por producto y devuelve el top 5 ordenado por volumen total de ventas.",
+          "",
+          " # Retorno",
+          " * `Vec<ReporteProductoVendido>`: Lista de estructuras con nombre y total vendido."
+        ],
+        "label": "productos_mas_vendidos",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 11
+        },
+        "selector": "0x299cf653"
+      },
+      {
+        "args": [
+          {
+            "label": "usuario",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Calcula la cantidad total de órdenes donde participa un usuario.",
+          "",
+          " Cuenta tanto las órdenes donde el usuario es comprador como donde es vendedor.",
+          "",
+          " # Parámetros",
+          " * `usuario` - AccountId del usuario a consultar.",
+          "",
+          " # Retorno",
+          " * `u32`: Cantidad total de órdenes asociadas."
+        ],
+        "label": "obtener_total_ordenes_usuario",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 15
+        },
+        "selector": "0xca0535fc"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Retorna la dirección del contrato marketplace asociado.",
+          "",
+          " Útil para verificar que el contrato de reportes está apuntando al",
+          " marketplace correcto."
+        ],
+        "label": "obtener_marketplace",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 16
+        },
+        "selector": "0x6717f690"
+      }
+    ]
+  },
+  "storage": {
+    "root": {
+      "layout": {
+        "struct": {
+          "fields": [
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "marketplace_contract"
+            }
+          ],
+          "name": "ReportesView"
+        }
+      },
+      "root_key": "0x00000000"
+    }
+  },
+  "types": [
+    {
+      "id": 0,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 1,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "AccountId"
+        ]
+      }
+    },
+    {
+      "id": 1,
+      "type": {
+        "def": {
+          "array": {
+            "len": 32,
+            "type": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "type": {
+        "def": {
+          "primitive": "u8"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 4
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 5
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 4
+          },
+          {
+            "name": "E",
+            "type": 5
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "type": {
+        "def": {
+          "tuple": []
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 1,
+                "name": "CouldNotReadInput"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "LangError"
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 7
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 5
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 7
+          },
+          {
+            "name": "E",
+            "type": 5
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 8
+          }
+        }
+      }
+    },
+    {
+      "id": 8,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "direccion",
+                "type": 0,
+                "typeName": "AccountId"
+              },
+              {
+                "name": "rol",
+                "type": 9,
+                "typeName": "RolUsuario"
+              },
+              {
+                "name": "reputacion_como_comprador",
+                "type": 10,
+                "typeName": "u32"
+              },
+              {
+                "name": "reputacion_como_vendedor",
+                "type": 10,
+                "typeName": "u32"
+              }
+            ]
+          }
+        },
+        "path": [
+          "reportes_view",
+          "Usuario"
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "Comprador"
+              },
+              {
+                "index": 1,
+                "name": "Vendedor"
+              },
+              {
+                "index": 2,
+                "name": "Ambos"
+              }
+            ]
+          }
+        },
+        "path": [
+          "reportes_view",
+          "RolUsuario"
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "type": {
+        "def": {
+          "primitive": "u32"
+        }
+      }
+    },
+    {
+      "id": 11,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 12
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 5
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 12
+          },
+          {
+            "name": "E",
+            "type": 5
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 13
+          }
+        }
+      }
+    },
+    {
+      "id": 13,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "nombre_producto",
+                "type": 14,
+                "typeName": "String"
+              },
+              {
+                "name": "total_vendido",
+                "type": 10,
+                "typeName": "u32"
+              }
+            ]
+          }
+        },
+        "path": [
+          "reportes_view",
+          "ReporteProductoVendido"
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "type": {
+        "def": {
+          "primitive": "str"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 5
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 10
+          },
+          {
+            "name": "E",
+            "type": 5
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 0
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 5
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 0
+          },
+          {
+            "name": "E",
+            "type": 5
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "type": {
+        "def": {
+          "primitive": "u128"
+        }
+      }
+    },
+    {
+      "id": 18,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 1,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "Hash"
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "type": {
+        "def": {
+          "primitive": "u64"
+        }
+      }
+    },
+    {
+      "id": 20,
+      "type": {
+        "def": {
+          "variant": {}
+        },
+        "path": [
+          "ink_env",
+          "types",
+          "NoChainExtension"
+        ]
+      }
+    }
+  ],
+  "version": "4"
+}

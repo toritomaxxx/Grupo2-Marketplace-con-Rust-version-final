@@ -1,0 +1,2190 @@
+{
+  "source": {
+    "hash": "0x897956e21f1f6f9879af36fc66281b3df97edcc00e04dd70d330e530f9b164cd",
+    "language": "ink! 4.3.0",
+    "compiler": "rustc 1.91.1",
+    "build_info": {
+      "build_mode": "Release",
+      "cargo_contract_version": "3.2.0",
+      "rust_toolchain": "stable-x86_64-unknown-linux-gnu",
+      "wasm_opt_settings": {
+        "keep_debug_symbols": false,
+        "optimization_passes": "Z"
+      }
+    }
+  },
+  "contract": {
+    "name": "marketplace_principal",
+    "version": "0.1.0",
+    "authors": [
+      "[your_name] <[your_email]>"
+    ]
+  },
+  "spec": {
+    "constructors": [
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          "Constructor inicial."
+        ],
+        "label": "nuevo",
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
+          "type": 8
+        },
+        "selector": "0x0fc23031"
+      }
+    ],
+    "docs": [],
+    "environment": {
+      "accountId": {
+        "displayName": [
+          "AccountId"
+        ],
+        "type": 0
+      },
+      "balance": {
+        "displayName": [
+          "Balance"
+        ],
+        "type": 5
+      },
+      "blockNumber": {
+        "displayName": [
+          "BlockNumber"
+        ],
+        "type": 3
+      },
+      "chainExtension": {
+        "displayName": [
+          "ChainExtension"
+        ],
+        "type": 35
+      },
+      "hash": {
+        "displayName": [
+          "Hash"
+        ],
+        "type": 33
+      },
+      "maxEventTopics": 4,
+      "timestamp": {
+        "displayName": [
+          "Timestamp"
+        ],
+        "type": 34
+      }
+    },
+    "events": [
+      {
+        "args": [
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "cuenta",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "rol_anterior",
+            "type": {
+              "displayName": [
+                "RolUsuario"
+              ],
+              "type": 12
+            }
+          },
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "rol_nuevo",
+            "type": {
+              "displayName": [
+                "RolUsuario"
+              ],
+              "type": 12
+            }
+          }
+        ],
+        "docs": [],
+        "label": "RolActualizado"
+      },
+      {
+        "args": [
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "vendedor",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "producto_id",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "docs": [],
+        "label": "ProductoPublicado"
+      },
+      {
+        "args": [
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "orden_id",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "comprador",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "vendedor",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "calificacion",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "docs": [],
+        "label": "CompradorCalifico"
+      },
+      {
+        "args": [
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "orden_id",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "vendedor",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "comprador",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "calificacion",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "docs": [],
+        "label": "VendedorCalifico"
+      }
+    ],
+    "lang_error": {
+      "displayName": [
+        "ink",
+        "LangError"
+      ],
+      "type": 10
+    },
+    "messages": [
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Cantidad total de productos."
+        ],
+        "label": "obtener_cantidad_productos",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 11
+        },
+        "selector": "0xc0041bc6"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Cantidad total de órdenes."
+        ],
+        "label": "obtener_cantidad_ordenes",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 11
+        },
+        "selector": "0x0214b34d"
+      },
+      {
+        "args": [
+          {
+            "label": "rol",
+            "type": {
+              "displayName": [
+                "RolUsuario"
+              ],
+              "type": 12
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Registra un nuevo usuario con el rol especificado."
+        ],
+        "label": "registrar_usuario",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 13
+        },
+        "selector": "0x8c9b70d4"
+      },
+      {
+        "args": [
+          {
+            "label": "usuario",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Verifica si una cuenta ya está registrada en el marketplace.",
+          "",
+          " # Parámetros",
+          " * `usuario` - La dirección de la cuenta (AccountId) a verificar.",
+          "",
+          " # Retorno",
+          " * `true` si el usuario existe en el mapping de usuarios.",
+          " * `false` en caso contrario."
+        ],
+        "label": "esta_registrado",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 16
+        },
+        "selector": "0x2363e5dd"
+      },
+      {
+        "args": [
+          {
+            "label": "usuario",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Obtiene los datos completos de un usuario registrado.",
+          "",
+          " # Parámetros",
+          " * `usuario` - La dirección de la cuenta a buscar.",
+          "",
+          " # Retorno",
+          " * `Some(Usuario)` conteniendo la info del usuario si existe.",
+          " * `None` si el usuario no está registrado."
+        ],
+        "label": "obtener_usuario",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 17
+        },
+        "selector": "0x48bb2049"
+      },
+      {
+        "args": [
+          {
+            "label": "nuevo_rol",
+            "type": {
+              "displayName": [
+                "RolUsuario"
+              ],
+              "type": 12
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Modifica el rol de un usuario existente.",
+          "",
+          " # Parámetros",
+          " * `nuevo_rol` - El rol al que se desea cambiar (`Comprador`, `Vendedor`, `Ambos`).",
+          "",
+          " # Errores",
+          " * `UsuarioNoRegistrado`: Quien llama no tiene cuenta.",
+          " * `NoEsRolCorrecto`: La transición no es válida (e.g. Vendedor -> Comprador si no es permitido directo) o es el mismo rol actual."
+        ],
+        "label": "modificar_rol_usuario",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 13
+        },
+        "selector": "0x29a73181"
+      },
+      {
+        "args": [
+          {
+            "label": "nombre",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 4
+            }
+          },
+          {
+            "label": "descripcion",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 4
+            }
+          },
+          {
+            "label": "precio",
+            "type": {
+              "displayName": [
+                "Balance"
+              ],
+              "type": 5
+            }
+          },
+          {
+            "label": "cantidad",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "label": "categoria",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 4
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Publica un nuevo producto en el catálogo.",
+          "",
+          " # Parámetros",
+          " * `nombre` - Nombre del producto.",
+          " * `descripcion` - Breve descripción.",
+          " * `precio` - Costo unitario.",
+          " * `cantidad` - Stock inicial disponible.",
+          " * `categoria` - Categoría para agrupación.",
+          "",
+          " # Errores",
+          " * `UsuarioNoRegistrado`: El caller no existe.",
+          " * `NoEsRolCorrecto`: El caller no es Vendedor o Ambos.",
+          " * `CantidadInsuficiente`: El stock inicial es 0.",
+          " * `ProductosVacios`: Error interno al generar ID."
+        ],
+        "label": "publicar_producto",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 13
+        },
+        "selector": "0xe561d258"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Lista todos los productos publicados por el usuario que llama (sus propios productos).",
+          "",
+          " # Retorno",
+          " * `Ok(Vec<Producto>)`: Lista de productos.",
+          "",
+          " # Errores",
+          " * `UsuarioNoRegistrado` o `NoEsRolCorrecto` si no es vendedor.",
+          " * `ProductosVacios`: Si no tiene productos publicados."
+        ],
+        "label": "listar_mis_productos",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 20
+        },
+        "selector": "0xf1ae62dd"
+      },
+      {
+        "args": [
+          {
+            "label": "vendedor",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Muestra los productos de un vendedor específico.",
+          "",
+          " # Parámetros",
+          " * `vendedor` - AccountId del vendedor a consultar.",
+          "",
+          " # Errores",
+          " * `ProductosVacios`: Si el vendedor no tiene productos activos."
+        ],
+        "label": "listar_productos_por_vendedor",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 20
+        },
+        "selector": "0xc41650e5"
+      },
+      {
+        "args": [
+          {
+            "label": "producto_id",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "label": "cantidad",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Genera una nueva orden de compra.",
+          "",
+          " # Parámetros",
+          " * `producto_id` - ID del producto a comprar.",
+          " * `cantidad` - Unidades a adquirir.",
+          "",
+          " # Retorno",
+          " * `Ok(u32)`: El ID de la orden generada.",
+          "",
+          " # Errores",
+          " * `StockInsuficiente`: El producto no tiene tantas unidades.",
+          " * `ProductosVacios`: El producto no existe.",
+          " * `NoEsRolCorrecto`: El comprador no tiene el rol adecuado."
+        ],
+        "label": "crear_orden",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 24
+        },
+        "selector": "0x2cd1498c"
+      },
+      {
+        "args": [
+          {
+            "label": "orden_id",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Cambia el estado de una orden a `Enviada`.",
+          "",
+          " # Requisitos",
+          " * Solo el **Vendedor** de la orden puede ejecutar esto.",
+          " * La orden debe estar en estado `Pendiente`."
+        ],
+        "label": "marcar_orden_como_enviada",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 13
+        },
+        "selector": "0x0598db91"
+      },
+      {
+        "args": [
+          {
+            "label": "orden_id",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Cambia el estado de una orden a `Recibida`.",
+          "",
+          " # Requisitos",
+          " * Solo el **Comprador** de la orden puede ejecutar esto.",
+          " * La orden debe estar en estado `Enviada`."
+        ],
+        "label": "marcar_como_recibida",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 13
+        },
+        "selector": "0x9a1f4609"
+      },
+      {
+        "args": [
+          {
+            "label": "orden_id",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "label": "calificacion",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Permite al comprador calificar su experiencia con el vendedor.",
+          "",
+          " # Parámetros",
+          " * `orden_id` - ID de la orden finalizada.",
+          " * `calificacion` - Valor entero entre 1 y 5.",
+          "",
+          " # Errores",
+          " * `CalificacionInvalida`: Si el valor no está entre 1 y 5.",
+          " * `EstadoInvalido`: Si la orden no está `Recibida`.",
+          " * `YaCalificado`: Si ya se emitió voto para esta orden."
+        ],
+        "label": "calificar_vendedor",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 13
+        },
+        "selector": "0xb999245c"
+      },
+      {
+        "args": [
+          {
+            "label": "orden_id",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "label": "calificacion",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Permite al vendedor calificar al comprador.",
+          "",
+          " # Parámetros",
+          " * `orden_id` - ID de la orden finalizada.",
+          " * `calificacion` - Valor entero entre 1 y 5.",
+          "",
+          " # Errores",
+          " * `CalificacionInvalida`: Si el valor no está entre 1 y 5.",
+          " * `EstadoInvalido`: Si la orden no está `Recibida`.",
+          " * `YaCalificado`: Si ya se emitió voto."
+        ],
+        "label": "calificar_comprador",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 13
+        },
+        "selector": "0x65a4954d"
+      },
+      {
+        "args": [
+          {
+            "label": "orden_id",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Inicia o completa el proceso de cancelación.",
+          "",
+          " Si el Comprador llama, marca su solicitud.",
+          " Si el Vendedor llama, marca su aceptación.",
+          " Cuando **ambos** han aceptado, la orden pasa a `Cancelada` y se devuelve el stock.",
+          "",
+          " # Errores",
+          " * `EstadoInvalido`: Solo se pueden cancelar órdenes `Pendiente`."
+        ],
+        "label": "solicitar_cancelacion_orden",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 13
+        },
+        "selector": "0x33502e45"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Retorna todos los productos disponibles."
+        ],
+        "label": "obtener_todos_los_productos",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 26
+        },
+        "selector": "0x99ed311a"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Retorna todas las órdenes."
+        ],
+        "label": "obtener_todas_las_ordenes",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 27
+        },
+        "selector": "0xf3198e65"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Retorna todos los usuarios."
+        ],
+        "label": "obtener_todos_los_usuarios",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 31
+        },
+        "selector": "0x85a7dd7c"
+      }
+    ]
+  },
+  "storage": {
+    "root": {
+      "layout": {
+        "struct": {
+          "fields": [
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xed2b6416",
+                              "ty": 0
+                            }
+                          },
+                          "name": "direccion"
+                        },
+                        {
+                          "layout": {
+                            "enum": {
+                              "dispatchKey": "0xed2b6416",
+                              "name": "RolUsuario",
+                              "variants": {
+                                "0": {
+                                  "fields": [],
+                                  "name": "Comprador"
+                                },
+                                "1": {
+                                  "fields": [],
+                                  "name": "Vendedor"
+                                },
+                                "2": {
+                                  "fields": [],
+                                  "name": "Ambos"
+                                }
+                              }
+                            }
+                          },
+                          "name": "rol"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xed2b6416",
+                              "ty": 3
+                            }
+                          },
+                          "name": "reputacion_como_comprador"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xed2b6416",
+                              "ty": 3
+                            }
+                          },
+                          "name": "reputacion_como_vendedor"
+                        }
+                      ],
+                      "name": "Usuario"
+                    }
+                  },
+                  "root_key": "0xed2b6416"
+                }
+              },
+              "name": "usuarios"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xcf8d8fc8",
+                              "ty": 3
+                            }
+                          },
+                          "name": "id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xcf8d8fc8",
+                              "ty": 4
+                            }
+                          },
+                          "name": "nombre"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xcf8d8fc8",
+                              "ty": 4
+                            }
+                          },
+                          "name": "descripcion"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xcf8d8fc8",
+                              "ty": 5
+                            }
+                          },
+                          "name": "precio"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xcf8d8fc8",
+                              "ty": 3
+                            }
+                          },
+                          "name": "cantidad"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xcf8d8fc8",
+                              "ty": 4
+                            }
+                          },
+                          "name": "categoria"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xcf8d8fc8",
+                              "ty": 0
+                            }
+                          },
+                          "name": "vendedor"
+                        }
+                      ],
+                      "name": "Producto"
+                    }
+                  },
+                  "root_key": "0xcf8d8fc8"
+                }
+              },
+              "name": "productos"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 3
+                }
+              },
+              "name": "next_producto_id"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x672aab52",
+                              "ty": 3
+                            }
+                          },
+                          "name": "id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x672aab52",
+                              "ty": 0
+                            }
+                          },
+                          "name": "comprador"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x672aab52",
+                              "ty": 0
+                            }
+                          },
+                          "name": "vendedor"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x672aab52",
+                              "ty": 3
+                            }
+                          },
+                          "name": "producto_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x672aab52",
+                              "ty": 3
+                            }
+                          },
+                          "name": "cantidad"
+                        },
+                        {
+                          "layout": {
+                            "enum": {
+                              "dispatchKey": "0x672aab52",
+                              "name": "EstadoOrden",
+                              "variants": {
+                                "0": {
+                                  "fields": [],
+                                  "name": "Pendiente"
+                                },
+                                "1": {
+                                  "fields": [],
+                                  "name": "Enviada"
+                                },
+                                "2": {
+                                  "fields": [],
+                                  "name": "Recibida"
+                                },
+                                "3": {
+                                  "fields": [],
+                                  "name": "Cancelada"
+                                }
+                              }
+                            }
+                          },
+                          "name": "estado"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x672aab52",
+                              "ty": 6
+                            }
+                          },
+                          "name": "comprador_califico"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x672aab52",
+                              "ty": 6
+                            }
+                          },
+                          "name": "vendedor_califico"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x672aab52",
+                              "ty": 6
+                            }
+                          },
+                          "name": "comprador_solicita_cancelacion"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x672aab52",
+                              "ty": 6
+                            }
+                          },
+                          "name": "vendedor_acepta_cancelacion"
+                        }
+                      ],
+                      "name": "Orden"
+                    }
+                  },
+                  "root_key": "0x672aab52"
+                }
+              },
+              "name": "ordenes"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 3
+                }
+              },
+              "name": "next_orden_id"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 7
+                }
+              },
+              "name": "lista_usuarios_ids"
+            }
+          ],
+          "name": "Marketplace"
+        }
+      },
+      "root_key": "0x00000000"
+    }
+  },
+  "types": [
+    {
+      "id": 0,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 1,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "AccountId"
+        ]
+      }
+    },
+    {
+      "id": 1,
+      "type": {
+        "def": {
+          "array": {
+            "len": 32,
+            "type": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "type": {
+        "def": {
+          "primitive": "u8"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": {
+        "def": {
+          "primitive": "u32"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": {
+        "def": {
+          "primitive": "str"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": {
+        "def": {
+          "primitive": "u128"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "type": {
+        "def": {
+          "primitive": "bool"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 0
+          }
+        }
+      }
+    },
+    {
+      "id": 8,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 9
+          },
+          {
+            "name": "E",
+            "type": 10
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "type": {
+        "def": {
+          "tuple": []
+        }
+      }
+    },
+    {
+      "id": 10,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 1,
+                "name": "CouldNotReadInput"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "LangError"
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 3
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 3
+          },
+          {
+            "name": "E",
+            "type": 10
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "Comprador"
+              },
+              {
+                "index": 1,
+                "name": "Vendedor"
+              },
+              {
+                "index": 2,
+                "name": "Ambos"
+              }
+            ]
+          }
+        },
+        "path": [
+          "marketplace_principal",
+          "RolUsuario"
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 14
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 14
+          },
+          {
+            "name": "E",
+            "type": 10
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 15
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 9
+          },
+          {
+            "name": "E",
+            "type": 15
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "CantidadInsuficiente"
+              },
+              {
+                "index": 1,
+                "name": "UsuarioNoRegistrado"
+              },
+              {
+                "index": 2,
+                "name": "ProductosVacios"
+              },
+              {
+                "index": 3,
+                "name": "NoEsRolCorrecto"
+              },
+              {
+                "index": 4,
+                "name": "EstadoInvalido"
+              },
+              {
+                "index": 5,
+                "name": "OrdenNoExiste"
+              },
+              {
+                "index": 6,
+                "name": "UsuarioExistente"
+              },
+              {
+                "index": 7,
+                "name": "StockInsuficiente"
+              },
+              {
+                "index": 8,
+                "name": "CalificacionInvalida"
+              },
+              {
+                "index": 9,
+                "name": "YaCalificado"
+              }
+            ]
+          }
+        },
+        "path": [
+          "marketplace_principal",
+          "SistemaError"
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 6
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 6
+          },
+          {
+            "name": "E",
+            "type": 10
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 18
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 18
+          },
+          {
+            "name": "E",
+            "type": 10
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 19
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 19
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "direccion",
+                "type": 0,
+                "typeName": "AccountId"
+              },
+              {
+                "name": "rol",
+                "type": 12,
+                "typeName": "RolUsuario"
+              },
+              {
+                "name": "reputacion_como_comprador",
+                "type": 3,
+                "typeName": "u32"
+              },
+              {
+                "name": "reputacion_como_vendedor",
+                "type": 3,
+                "typeName": "u32"
+              }
+            ]
+          }
+        },
+        "path": [
+          "marketplace_principal",
+          "Usuario"
+        ]
+      }
+    },
+    {
+      "id": 20,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 21
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 21
+          },
+          {
+            "name": "E",
+            "type": 10
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 21,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 22
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 15
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 22
+          },
+          {
+            "name": "E",
+            "type": 15
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 22,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 23
+          }
+        }
+      }
+    },
+    {
+      "id": 23,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "id",
+                "type": 3,
+                "typeName": "u32"
+              },
+              {
+                "name": "nombre",
+                "type": 4,
+                "typeName": "String"
+              },
+              {
+                "name": "descripcion",
+                "type": 4,
+                "typeName": "String"
+              },
+              {
+                "name": "precio",
+                "type": 5,
+                "typeName": "Balance"
+              },
+              {
+                "name": "cantidad",
+                "type": 3,
+                "typeName": "u32"
+              },
+              {
+                "name": "categoria",
+                "type": 4,
+                "typeName": "String"
+              },
+              {
+                "name": "vendedor",
+                "type": 0,
+                "typeName": "AccountId"
+              }
+            ]
+          }
+        },
+        "path": [
+          "marketplace_principal",
+          "Producto"
+        ]
+      }
+    },
+    {
+      "id": 24,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 25
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 25
+          },
+          {
+            "name": "E",
+            "type": 10
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 25,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 3
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 15
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 3
+          },
+          {
+            "name": "E",
+            "type": 15
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 26,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 22
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 22
+          },
+          {
+            "name": "E",
+            "type": 10
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 27,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 28
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 28
+          },
+          {
+            "name": "E",
+            "type": 10
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 28,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 29
+          }
+        }
+      }
+    },
+    {
+      "id": 29,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "id",
+                "type": 3,
+                "typeName": "u32"
+              },
+              {
+                "name": "comprador",
+                "type": 0,
+                "typeName": "AccountId"
+              },
+              {
+                "name": "vendedor",
+                "type": 0,
+                "typeName": "AccountId"
+              },
+              {
+                "name": "producto_id",
+                "type": 3,
+                "typeName": "u32"
+              },
+              {
+                "name": "cantidad",
+                "type": 3,
+                "typeName": "u32"
+              },
+              {
+                "name": "estado",
+                "type": 30,
+                "typeName": "EstadoOrden"
+              },
+              {
+                "name": "comprador_califico",
+                "type": 6,
+                "typeName": "bool"
+              },
+              {
+                "name": "vendedor_califico",
+                "type": 6,
+                "typeName": "bool"
+              },
+              {
+                "name": "comprador_solicita_cancelacion",
+                "type": 6,
+                "typeName": "bool"
+              },
+              {
+                "name": "vendedor_acepta_cancelacion",
+                "type": 6,
+                "typeName": "bool"
+              }
+            ]
+          }
+        },
+        "path": [
+          "marketplace_principal",
+          "Orden"
+        ]
+      }
+    },
+    {
+      "id": 30,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "Pendiente"
+              },
+              {
+                "index": 1,
+                "name": "Enviada"
+              },
+              {
+                "index": 2,
+                "name": "Recibida"
+              },
+              {
+                "index": 3,
+                "name": "Cancelada"
+              }
+            ]
+          }
+        },
+        "path": [
+          "marketplace_principal",
+          "EstadoOrden"
+        ]
+      }
+    },
+    {
+      "id": 31,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 32
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 32
+          },
+          {
+            "name": "E",
+            "type": 10
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 32,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 19
+          }
+        }
+      }
+    },
+    {
+      "id": 33,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 1,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "Hash"
+        ]
+      }
+    },
+    {
+      "id": 34,
+      "type": {
+        "def": {
+          "primitive": "u64"
+        }
+      }
+    },
+    {
+      "id": 35,
+      "type": {
+        "def": {
+          "variant": {}
+        },
+        "path": [
+          "ink_env",
+          "types",
+          "NoChainExtension"
+        ]
+      }
+    }
+  ],
+  "version": "4"
+}
