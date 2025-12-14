@@ -1,10 +1,13 @@
-# 🛒 Marketplace Descentralizado en Rust + Ink!
+# 🛒 Marketplace Descentralizado en Rust + Ink
 
 Trabajo Práctico Final para la materia Seminario de Lenguajes - Rust
+
 ## Implementación de un marketplace descentralizado tipo MercadoLibre sobre blockchain
 
 ### 🌟 Características principales
+
 👥 Gestión de Usuarios
+
 - Registro con roles diferenciados (🛍️ Comprador / 🏪 Vendedor)
 - Perfiles verificables en blockchain
 - Sistema de reputación basado en transacciones
@@ -14,21 +17,26 @@ Trabajo Práctico Final para la materia Seminario de Lenguajes - Rust
 
 💰 Transacciones Seguras
 Sistema de órdenes con estados:
+
 - ⏳ Pendiente
 - 🚚 Enviado
 - ✅ Recibido
 
 🌐 Despliegue
+
 - Contrato desplegado en Shibuya Testnet (Polkadot)
 - Interfaz web compatible con wallets como Polkadot.js
 
 ## 🛠️ Configuración Técnica
+
 ### 📋 Requisitos Previos
+
 - Rust Nightly (2024-05-20)
 - cargo-contract 4.1.3
 - Substrate Contracts Node (para desarrollo local)
 
 ### ⚙️ Instalación
+
 Configurar toolchain:
 echo '[toolchain]
 channel = "nightly-2024-05-20"
@@ -42,12 +50,17 @@ Configurar entorno:
 rustup component add rust-src --toolchain nightly-2024-05-20
 
 🏗️ Compilación
-cargo contract build --release
+El proyecto consta de dos contratos: `marketplace_principal` y `reportes_view`.
 
-📦 Artefactos generados en target/ink/:
-marketplace.wasm (código ejecutable)
-marketplace.contract (ABI + WASM)
-metadata.json (interfaz del contrato)
+```bash
+cargo contract build --release --manifest-path marketplace_principal/Cargo.toml
+cargo contract build --release --manifest-path reportes_view/Cargo.toml
+```
+
+📦 Artefactos generados en `target/ink/`:
+
+- `marketplace_principal/marketplace_principal.contract`
+- `reportes_view/reportes_view.contract`
 
 🧪 Testing
 🔬 Tests Unitarios
@@ -59,9 +72,10 @@ cargo test --lib
 cargo test --features e2e-tests
 
 Pruebas que incluyen:
--Interacción con wallet
--Transacciones reales
--Simulación de red
+
+- Interacción con wallet
+- Transacciones reales
+- Simulación de red
 
 🚀 Despliegue
 En Testnet (Shibuya):
@@ -73,7 +87,5 @@ substrate-contracts-node --dev
 cargo contract instantiate --constructor new --args false --suri //Alice
 
 ## 📚 Documentación Adicional
-📄 Documentación técnica
-🖥️ Interfaz web
-📊 Diagrama de arquitectura
 
+*(En construcción)*
