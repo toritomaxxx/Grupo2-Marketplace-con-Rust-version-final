@@ -1,5 +1,6 @@
 /target/*
 !/target/ink
+!/target/tarpaulin
 /target/ink/**/release
 /target/ink/**/wasm32-unknown-unknown
 /.vscode
