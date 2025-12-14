@@ -3,11 +3,5 @@
 /.idea
 .DS_Store
 Cargo.lock
-**/*.contract
-**/*.json
-**/*.wasm
 **/*.rs.bk
-cobertura.xml
-tarpaulin-report.html
-coverage_reports/
 
